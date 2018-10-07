@@ -1,5 +1,5 @@
 #!/bin/bash
 while true
 do curl customer-tutorial.$(minishift ip).nip.io
-sleep .1
+sleep .3
 done
