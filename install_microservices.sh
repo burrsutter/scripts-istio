@@ -6,7 +6,7 @@
 # assumes the 'docker' tool points to minikube/minishift 
 # assumes this script is in a directory called 'scripts-istio'
 # which is a peer of 'istio-tutorial'
-# assumes you have 'kubectl create namespace' or 'oc new-project tutorial'
+# assumes you have 'kubectl create namespace tutorial' or 'oc new-project tutorial'
 # assumes you have 'kubens tutorial' or 'oc project tutorial'
 
 # Customer
@@ -18,7 +18,7 @@ kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n t
 kubectl create -f ../../kubernetes/Service.yml -n tutorial
 
 # for minikube, open a NodePort
-# kubectl patch service/customer -p '{"spec":{"type":"NodePort"}}' -n tutorial
+kubectl patch service/customer -p '{"spec":{"type":"NodePort"}}' -n tutorial
 
 # for minishift, create a Route
 # oc expose service customer
