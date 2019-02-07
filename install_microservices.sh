@@ -29,7 +29,7 @@ mvn clean package
 docker build -t example/preference:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
-kubectl create -f ../../kubernetes/Service.yml
+kubectl create -f ../../kubernetes/Service.yml -n tutorial
 
 # Recommendation
 cd ../../../recommendation/java/vertx
@@ -37,4 +37,4 @@ mvn clean package
 docker build -t example/recommendation:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
-kubectl create -f ../../kubernetes/Service.yml
+kubectl create -f ../../kubernetes/Service.yml -n tutorial
