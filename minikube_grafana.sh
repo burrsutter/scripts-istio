@@ -9,4 +9,4 @@ kubectl patch service/grafana -p '{"spec":{"type":"NodePort"}}' -n istio-system
 
 # echo "open http://$(minikube ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')"
 
-open http://$(minikube ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')
+open http://$(minikube -p istio ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')

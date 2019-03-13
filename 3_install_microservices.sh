@@ -6,8 +6,10 @@
 # assumes the 'docker' tool points to minikube/minishift 
 # assumes this script is in a directory called 'scripts-istio'
 # which is a peer of 'istio-tutorial'
-# assumes you have 'kubectl create namespace tutorial' or 'oc new-project tutorial'
 # assumes you have 'kubens tutorial' or 'oc project tutorial'
+
+kubectl create namespace tutorial
+kubens tutorial
 
 # Customer
 cd ../istio-tutorial/customer/java/springboot

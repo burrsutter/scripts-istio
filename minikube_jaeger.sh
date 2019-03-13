@@ -9,4 +9,4 @@
 
 kubectl patch service/jaeger-query -p '{"spec":{"type":"NodePort"}}' -n istio-system
 
-open http://$(minikube ip):$(kubectl get svc jaeger-query -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')
+open http://$(minikube -p istio ip):$(kubectl get svc jaeger-query -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')

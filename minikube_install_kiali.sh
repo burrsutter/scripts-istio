@@ -1,29 +1,24 @@
 #!/bin/bash
 
 # change these URLs to
-# echo "https://$(minikube ip):$(kubectl get svc jaeger-query -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')"
+# echo "https://$(minikube -p istio ip):$(kubectl get svc jaeger-query -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')"
 # and
-# echo "https://$(minikube ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')"
+# echo "https://$(minikube -p istio ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')"
 
-JAEGER_URL="https://http://192.168.99.101:31653"
-GRAFANA_URL="https://192.168.99.101:31166"
-VERSION_LABEL="v0.9.0"
+export JAEGER_URL=https://$(minikube -p istio ip):$(kubectl get svc jaeger-query -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')
+export GRAFANA_URL=https://$(minikube -p istio ip):$(kubectl get svc grafana -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')
+export VERSION_LABEL="v0.15.0"
+export IMAGE_VERSION="v0.15.0"
+export KIALI_USERNAME="admin"
+export KIALI_PASSPHRASE="admin"
 
-# Installs Kiali's configmap
-curl https://raw.githubusercontent.com/kiali/kiali/${VERSION_LABEL}/deploy/kubernetes/kiali-configmap.yaml | \
-  VERSION_LABEL=${VERSION_LABEL} \
-  JAEGER_URL=${JAEGER_URL}  \
-  GRAFANA_URL=${GRAFANA_URL} envsubst | kubectl create -n istio-system -f -
+# bash <(curl -L http://git.io/getLatestKialiKubernetes)
 
-# Installs Kiali's secrets
-curl https://raw.githubusercontent.com/kiali/kiali/${VERSION_LABEL}/deploy/kubernetes/kiali-secrets.yaml | \
-  VERSION_LABEL=${VERSION_LABEL} envsubst | kubectl create -n istio-system -f -
+git clone -b ${VERSION_LABEL} https://github.com/kiali/kiali
 
-# Deploys Kiali to the cluster
-curl https://raw.githubusercontent.com/kiali/kiali/${VERSION_LABEL}/deploy/kubernetes/kiali.yaml | \
-  VERSION_LABEL=${VERSION_LABEL}  \
-  IMAGE_NAME=kiali/kiali \
-  IMAGE_VERSION=${VERSION_LABEL}  \
-  NAMESPACE=istio-system  \
-  VERBOSE_MODE=4  \
-  IMAGE_PULL_POLICY_TOKEN="imagePullPolicy: Always" envsubst | kubectl create -n istio-system -f -
+cd kiali/deploy/kubernetes
+./deploy-kiali-to-kubernetes.sh
+
+open https://$(minikube -p istio ip):$(kubectl get svc kiali -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')/kiali/console
+
+
