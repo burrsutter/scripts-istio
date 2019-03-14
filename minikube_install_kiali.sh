@@ -12,12 +12,12 @@ export IMAGE_VERSION="v0.15.0"
 export KIALI_USERNAME="admin"
 export KIALI_PASSPHRASE="admin"
 
-# bash <(curl -L http://git.io/getLatestKialiKubernetes)
+bash <(curl -L http://git.io/getLatestKialiKubernetes)
 
-git clone -b ${VERSION_LABEL} https://github.com/kiali/kiali
+# git clone -b ${VERSION_LABEL} https://github.com/kiali/kiali
 
-cd kiali/deploy/kubernetes
-./deploy-kiali-to-kubernetes.sh
+# cd kiali/deploy/kubernetes
+# ./deploy-kiali-to-kubernetes.sh
 
 open https://$(minikube -p istio ip):$(kubectl get svc kiali -n istio-system -o 'jsonpath={.spec.ports[0].nodePort}')/kiali/console
 
