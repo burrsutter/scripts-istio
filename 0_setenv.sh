@@ -10,6 +10,8 @@ export KUBE_EDITOR="code -w"
 export ISTIO_HOME=/Users/burrsutter/minikube_0.35.0/scripts-istio/istio-1.0.5
 export PATH=$ISTIO_HOME/bin:$PATH
 
+# https://github.com/GoogleContainerTools/krew
+# export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 echo 'the following after minikube as started'
 echo 'eval $(minikube --profile istio docker-env)'
