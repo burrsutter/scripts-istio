@@ -12,8 +12,8 @@ kubectl create namespace tutorial
 kubens tutorial
 
 # Customer
-cd ../istio-tutorial/customer/java/springboot
-mvn clean package
+cd ../istio-tutorial/customer/java/quarkus 
+mvn clean package -DskipTests
 docker build -t example/customer .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
@@ -26,16 +26,16 @@ kubectl patch service/customer -p '{"spec":{"type":"NodePort"}}' -n tutorial
 # oc expose service customer
 
 # Preference 
-cd ../../../preference/java/springboot
-mvn clean package
+cd ../../../preference/java/quarkus
+mvn clean package -DskipTests
 docker build -t example/preference:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
 kubectl create -f ../../kubernetes/Service.yml -n tutorial
 
 # Recommendation
-cd ../../../recommendation/java/vertx
-mvn clean package
+cd ../../../recommendation/java/quarkus
+mvn clean package -DskipTests
 docker build -t example/recommendation:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial

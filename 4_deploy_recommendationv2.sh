@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ../istio-tutorial/recommendation/java/vertx
+cd ../istio-tutorial/recommendation/java/quarkus
 
 mvn clean package
 
