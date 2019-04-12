@@ -1,0 +1,10 @@
+apiVersion: config.istio.io/v1alpha2
+kind: rule
+metadata:
+  name: recommendationdestination
+spec:
+  match: destination.labels["app"] == "recommendation"
+  actions:
+  - handler: recommendationwhitelist.listchecker
+    instances:
+    - sourceservice.listentry
