@@ -8,7 +8,7 @@ export PATH=$MINISHIFT_HOME:$PATH
 # export KUBECONFIG=$MINISHIFT_HOME/.kube/config:$MINIKUBE_HOME/.kube/kubconfig2
 export KUBE_EDITOR="code -w"
 
-export ISTIO_HOME=/Users/burrsutter/minishift_1.33.0/scripts-istio/istio-1.0.5
+export ISTIO_HOME=/Users/burrsutter/minishift_1.33.0/scripts-istio/istio-1.1.1
 export PATH=$ISTIO_HOME/bin:$PATH
 
 echo 'the following after minishift as started'
