@@ -9,7 +9,7 @@ minishift config set vm-driver virtualbox
 minishift addon enable admin-user
 
 #cdk 3.7 bug - docker url check
-minishift config set skip-startup-checks true
+# minishift config set skip-startup-checks true
 
 minishift start
 # This needs to be executed again if you restart minishift.
