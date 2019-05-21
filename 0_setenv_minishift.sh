@@ -2,8 +2,8 @@
 
 echo 'correct usage is source 0_setenv.sh'
 
-export MINISHIFT_HOME=/Users/burrsutter/minishift_1.33.0/bin;
-export PATH=$MINISHIFT_HOME:$PATH
+export MINISHIFT_HOME=/Users/burrsutter/minishift_1.33.0;
+export PATH=$MINISHIFT_HOME/bin:$PATH
 export KUBECONFIG=$MINISHIFT_HOME/.kube/config:$MINISHIFT_HOME/.kube/kubconfig2
 export KUBE_EDITOR="code -w"
 
