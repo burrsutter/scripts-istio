@@ -12,8 +12,9 @@ minishift addon enable admin-user
 # minishift config set skip-startup-checks true
 
 minishift start
+
 # This needs to be executed again if you restart minishift.
-# minishift ssh -- sudo setenforce 0
+minishift ssh -- sudo setenforce 0
 
 # Openshift console bug. anyuid needs to be applied after startup
 minishift addon apply anyuid
