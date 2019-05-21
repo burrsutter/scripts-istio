@@ -1,6 +1,5 @@
 #!/bin/bash
 while true
-do curl customer-tutorial.$(minikube --profile istio-mk ip).nip.io
-# do curl customer-tutorial.192.168.99.100.nip.io
+do curl $(minikube --profile istio-mk ip):$(kubectl get svc customer -n tutorial -o 'jsonpath={.spec.ports[0].nodePort}')
 sleep .3
 done
