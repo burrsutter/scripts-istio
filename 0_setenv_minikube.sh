@@ -2,7 +2,7 @@
 
 echo 'correct usage is source 0_setenv.sh'
 
-export MINIKUBE_HOME=/Users/burrsutter/minikube_1.0.0;
+export MINIKUBE_HOME=/Users/burrsutter/minikube_1.0.1;
 export PATH=$MINIKUBE_HOME/bin:$PATH
 export KUBECONFIG=$MINIKUBE_HOME/.kube/config:$MINIKUBE_HOME/.kube/kubconfig2
 export KUBE_EDITOR="code -w"
@@ -14,4 +14,4 @@ export PATH=$ISTIO_HOME/bin:$PATH
 # export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 echo 'the following after minikube as started'
-echo 'eval $(minikube --profile istio docker-env)'
+echo 'eval $(minikube --profile istio-mk docker-env)'

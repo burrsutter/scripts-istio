@@ -1,6 +1,6 @@
 #!/bin/bash
 
-minishift profile set istio-tutorial
+minishift profile set istio-ms
 minishift config set memory 8GB
 minishift config set cpus 3
 minishift config set image-caching true
