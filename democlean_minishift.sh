@@ -10,5 +10,6 @@ oc delete destinationrule recommendation
 oc delete virtualservice recommendation
 
 docker rmi example/recommendation:v2
-cp RecommendationVerticle.java ../istio-tutorial/recommendation/java/vertx/src/main/java/com/redhat/developer/demos/recommendation/
+# cp RecommendationVerticle.java ../istio-tutorial/recommendation/java/vertx/src/main/java/com/redhat/developer/demos/recommendation/
+cp RecommendationResource.java ../istio-tutorial/recommendation/java/quarkus/src/main/java/com/redhat/developer/demos/recommendation/rest/
 
