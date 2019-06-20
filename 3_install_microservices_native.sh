@@ -11,6 +11,7 @@
 export GRAALVM_HOME=~/tools/graalvm-ce-1.0.0-rc15/Contents/Home/
 
 kubectl create namespace tutorial
+# oc adm policy add-scc-to-user privileged -z default -n tutorial
 kubens tutorial
 
 # Customer
@@ -42,3 +43,5 @@ docker build -f src/main/docker/Dockerfile.native -t example/recommendation:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
 kubectl create -f ../../kubernetes/Service.yml -n tutorial
+
+kubectl create -f ../../../customer/kubernetes/Gateway.yml -n tutorial
