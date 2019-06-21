@@ -14,5 +14,5 @@ oc expose svc grafana -n istio-system
 oc expose svc prometheus -n istio-system
 oc expose svc tracing -n istio-system
 oc expose service kiali --path=/kiali -n istio-system
-oc expose svc istio-ingressgateway -n istio-system
+oc expose svc istio-ingressgateway -n istio-system --port=80
 oc adm policy add-cluster-role-to-user admin system:serviceaccount:istio-system:kiali-service-account -z default
