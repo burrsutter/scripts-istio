@@ -1,5 +1,7 @@
 #!/bin/bash
 
+oc login -u admin -p admin
+
 curl -L https://github.com/istio/istio/releases/download/1.1.9/istio-1.1.9-osx.tar.gz | tar xz
 
 cd istio-1.1.9
