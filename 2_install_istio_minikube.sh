@@ -1,8 +1,8 @@
 #!/bin/bash
 
-curl -L https://github.com/istio/istio/releases/download/1.1.1/istio-1.1.1-osx.tar.gz | tar xz
+curl -L https://github.com/istio/istio/releases/download/1.1.9/istio-1.1.9-osx.tar.gz | tar xz
 
-cd istio-1.1.1
+cd istio-1.1.9
 
 kubectl create -f install/kubernetes/helm/istio-init/files/crd-11.yaml
 

@@ -12,3 +12,4 @@ kubectl create -f ../istio-tutorial/preference/kubernetes/Service.yml -n tutoria
 kubectl apply -f <(istioctl kube-inject -f ../istio-tutorial/recommendation/kubernetes/Deployment.yml) -n tutorial
 kubectl create -f ../istio-tutorial/recommendation/kubernetes/Service.yml -n tutorial
 
+kubectl create -f ../istio-tutorial/customer/kubernetes/Gateway.yml -n tutorial

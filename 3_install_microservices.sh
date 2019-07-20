@@ -9,6 +9,7 @@
 # assumes you have 'kubens tutorial' or 'oc project tutorial'
 
 kubectl create namespace tutorial
+# oc adm policy add-scc-to-user privileged -z default -n tutorial
 kubens tutorial
 
 # Customer
@@ -40,3 +41,5 @@ docker build -t example/recommendation:v1 .
 
 kubectl apply -f <(istioctl kube-inject -f ../../kubernetes/Deployment.yml) -n tutorial
 kubectl create -f ../../kubernetes/Service.yml -n tutorial
+
+kubectl create -f ../../../customer/kubernetes/Gateway.yml -n tutorial

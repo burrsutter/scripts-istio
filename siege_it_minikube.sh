@@ -1,3 +1,7 @@
 #!/bin/bash
 
-siege -r 2 -c 20 -v $(minikube --profile istio-mk ip):$(kubectl get svc customer -n tutorial -o 'jsonpath={.spec.ports[0].nodePort}')
+INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+
+GATEWAY_URL=$(minikube -p istio-mk ip):$INGRESS_PORT
+
+siege -r 2 -c 20 -v $GATEWAY_URL
