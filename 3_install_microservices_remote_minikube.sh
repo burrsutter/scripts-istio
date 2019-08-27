@@ -1,6 +1,6 @@
 #!/bin/bash
 kubectl create namespace tutorial
-kubens tutorial
+kubectl config set-context $(kubectl config current-context) --namespace=tutorial
 
 # kubectl label set istio-injection=enabled 
 

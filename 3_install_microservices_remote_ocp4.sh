@@ -1,6 +1,6 @@
 #!/bin/bash
 kubectl create namespace tutorial
-kubens tutorial
+kubectl config set-context $(kubectl config current-context) --namespace=tutorial
 
 # on minishift
 oc adm policy add-scc-to-user privileged -z default -n tutorial
