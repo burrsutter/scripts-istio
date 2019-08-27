@@ -5,7 +5,7 @@ INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonp
 GATEWAY_URL=$(minikube -p istio-mk ip):$INGRESS_PORT
 
 while true
-do curl http://${GATEWAY_URL}/
+do curl http://${GATEWAY_URL}/customer
 sleep .3
 done
 
