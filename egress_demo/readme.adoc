@@ -1,0 +1,94 @@
+= Egress Blocking with Istio
+
+=== Create a namespace and make it "sticky"
+----
+kubectl create namespace egresstest
+kubectl config set-context --current --namespace=egresstest
+kubectl label namespace egresstest istio-injection=enabled
+----
+
+=== Check the Configmap
+----
+kubectl get configmap istio -n istio-system -o yaml | grep -o "mode: ALLOW_ANY"
+mode: ALLOW_ANY
+----
+
+=== or Edit the Configmap
+----
+export KUBE_EDITOR="code -w"
+kubectl edit configmap istio -n istio-system 
+
+ctrl-f 
+"outboundTrafficPolicy"
+----
+
+=== Create a Deployment and find its Pod
+----
+kubectl create deployment nginx --image=nginx
+NGINXPOD=$(kubectl get pods -l app=nginx -o 'jsonpath={.items[0].metadata.name}')
+----
+
+=== See the sidecar
+----
+kubectl describe pod $NGINXPOD
+
+# OR 
+
+kubectl get pod $NGINXPOD -o json | jq ".spec.containers[].args"
+
+# OR 
+
+kubectl get pod $NGINXPOD -o yaml | yq r - spec.containers[*].name
+----
+
+=== Exec into the Pod
+----
+kubectl exec -it $NGINXPOD /bin/bash
+apt-get update # note: this will fail if egress is blocked
+apt-get -y install curl 
+curl httpbin.org/user-agent
+{
+  "user-agent": "curl/7.64.0"
+}
+
+exit
+----
+
+=== Now, block egress
+
+----
+kubectl get configmap istio -n istio-system -o yaml \
+| sed 's/mode: ALLOW_ANY/mode: REGISTRY_ONLY/g' | \
+kubectl replace -n istio-system -f -
+
+kubectl get configmap istio -n istio-system -o yaml | grep -o "mode: REGISTRY_ONLY"
+----
+
+=== Try the curl again
+----
+kubectl exec -it $NGINXPOD /bin/bash
+
+curl httpbin.org/user-agent
+
+# silent failure, try verbose output
+
+curl -v httpbin.org/user-agent
+----
+
+=== Unblock egress
+
+----
+kubectl get configmap istio -n istio-system -o yaml \
+| sed 's/mode: REGISTRY_ONLY/mode: ALLOW_ANY/g' | \
+kubectl replace -n istio-system -f -
+
+kubectl get configmap istio -n istio-system -o yaml | grep -o "mode: ALLOW_ANY"
+----
+
+Note: it might take a few moments to take effect
+
+----
+kubectl exec -it $NGINXPOD /bin/bash
+
+curl httpbin.org/user-agent
+----
