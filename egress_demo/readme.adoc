@@ -51,6 +51,10 @@ curl httpbin.org/user-agent
   "user-agent": "curl/7.64.0"
 }
 
+# or another curl
+curl http://worldclockapi.com/api/json/cet/now
+{"$id":"1","currentDateTime":"2019-10-06T22:40+02:00","utcOffset":"02:00:00","isDayLightSavingsTime":true,"dayOfTheWeek":"Sunday","timeZoneName":"Central Europe Standard Time","currentFileTime":132148752561045719,"ordinalDate":"2019-279","serviceResponse":null}
+
 exit
 ----
 
@@ -73,6 +77,7 @@ curl httpbin.org/user-agent
 # silent failure, try verbose output
 
 curl -v httpbin.org/user-agent
+
 ----
 
 === Unblock egress
