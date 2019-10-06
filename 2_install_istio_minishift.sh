@@ -2,11 +2,13 @@
 
 oc login -u admin -p admin
 
-curl -L https://github.com/istio/istio/releases/download/1.1.9/istio-1.1.9-osx.tar.gz | tar xz
+curl -L https://github.com/istio/istio/releases/download/1.3.0/istio-1.3.0-osx.tar.gz | tar xz
 
-cd istio-1.1.9
+cd istio-1.3.0
 
-kubectl create -f install/kubernetes/helm/istio-init/files/crd-11.yaml
+for i in install/kubernetes/helm/istio-init/files/crd*yaml; 
+do oc apply -f $i; 
+done
 
 kubectl create -f install/kubernetes/istio-demo.yaml
 

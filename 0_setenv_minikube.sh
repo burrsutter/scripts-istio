@@ -8,7 +8,7 @@ export PATH=$MINIKUBE_HOME/bin:$PATH
 export KUBECONFIG=$MINIKUBE_HOME/.kube/config
 export KUBE_EDITOR="code -w"
 
-export ISTIO_HOME=$MINIKUBE_HOME/scripts-istio/istio-1.2.2
+export ISTIO_HOME=$MINIKUBE_HOME/scripts-istio/istio-1.3.0
 export PATH=$ISTIO_HOME/bin:$PATH
 
 # https://github.com/GoogleContainerTools/krew
