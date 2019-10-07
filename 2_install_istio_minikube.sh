@@ -4,9 +4,7 @@ curl -L https://github.com/istio/istio/releases/download/1.3.0/istio-1.3.0-osx.t
 
 cd istio-1.3.0
 
-for i in install/kubernetes/helm/istio-init/files/crd*yaml; 
-do kubectl apply -f $i; 
-done
+for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done
 
 kubectl create -f install/kubernetes/istio-demo.yaml
 
