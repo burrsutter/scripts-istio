@@ -3,4 +3,4 @@
 NGINXPOD=$(kubectl get pod -n egresstest -l app=nginx -o \
 'jsonpath={.items[0].metadata.name}')
 
-kubectl exec -it $NGINXPOD -n egresstest -- curl customer.tutorial.svc.cluster.local:8080
+kubectl exec -it $NGINXPOD  -c nginx -n egresstest -- curl customer.tutorial.svc.cluster.local:8080
