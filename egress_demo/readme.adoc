@@ -78,9 +78,23 @@ curl httpbin.org/user-agent
 
 curl -v httpbin.org/user-agent
 
+curl -v http://worldclockapi.com/api/json/cet/now
 ----
 
-=== Unblock egress
+=== Selectively open up egress
+----
+kubectl apply -f istiofiles/service-entry-egress-worldclockapi.yml
+----
+
+
+----
+kubectl exec -it $NGINXPOD /bin/bash
+
+curl -v http://worldclockapi.com/api/json/cet/now
+----
+
+
+=== Unblock all egress
 
 ----
 kubectl get configmap istio -n istio-system -o yaml \

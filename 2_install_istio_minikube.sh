@@ -8,8 +8,9 @@ for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f 
 
 kubectl create -f install/kubernetes/istio-demo.yaml
 
-kubectl patch service/grafana -p '{"spec":{"type":"NodePort"}}' -n istio-system
-kubectl patch service/prometheus -p '{"spec":{"type":"NodePort"}}' -n istio-system
-kubectl patch service/tracing -p '{"spec":{"type":"NodePort"}}' -n istio-system
-kubectl patch service/kiali -p '{"spec":{"type":"NodePort"}}' -n istio-system
-kubectl patch service/istio-ingressgateway -p '{"spec":{"type":"NodePort"}}' -n istio-system
+# the following handled by the minikube_dashboards.sh script
+# kubectl patch service/grafana -p '{"spec":{"type":"NodePort"}}' -n istio-system
+# kubectl patch service/prometheus -p '{"spec":{"type":"NodePort"}}' -n istio-system
+# kubectl patch service/tracing -p '{"spec":{"type":"NodePort"}}' -n istio-system
+# kubectl patch service/kiali -p '{"spec":{"type":"NodePort"}}' -n istio-system
+# kubectl patch service/istio-ingressgateway -p '{"spec":{"type":"NodePort"}}' -n istio-system
